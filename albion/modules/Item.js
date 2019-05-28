@@ -12,6 +12,25 @@ exports.Get = ()=>{
         res.json({'gettingItem':'true'});
     }
 }
+//&#x270e;
+
+
+
+
+
+//updates the price of items from database according to data from the body(single field "silver":<number>)
+exports.Update = ()=>{
+    return (req,res,next)=>{
+        res.json({'updatingItem':'true'});
+    }
+}
+
+//deletes the item from the store
+exports.Delete = ()=>{
+    return (req,res,next)=>{
+        res.json({'deletingItem':'true'});
+    }
+}
 
 //parses the data from the front end
 function parsebody(body){
