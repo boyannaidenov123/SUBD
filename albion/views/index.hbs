@@ -4,19 +4,46 @@
     <title>Albion Trading</title>
 </head>
 <body>
-    <div class="tableHeadRow">
-        <ul>
-            <li>Name</li>
-            <li>Type</li>
-            <li>Tier</li>
-            <li>City</li>
-            <li>Price</li>
-            <li>Last </li>
-            <li>Last-Modified</li>
-        </ul>
+    <style>
+        html { 
+            background: url(images/back2.jpg) no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        .table{
+            background-color: white;
+            margin-left: 30%;
+            width: 35%;
+            margin-top: 10%;
+            overflow: hidden;
+        }
+        .ulMain{
+            list-style-type: none;
+        }
+        li{
+            float: left;
+            display: block;
+            padding-left: 7%;
+            border:2px solid red;
+        }
+    </style>
+    
+    <div class="table">
+        <div class="tableHeadRow">
+            <ul class="ulMain">
+                <li>Name</li>
+                <li>Type</li>
+                <li>Tier</li>
+                <li>City</li>
+                <li>Price</li>
+                <li>Last-Modified</li>
+            </ul>
+        </div>
+        <div class="InformationTable"></div>
     </div>
-    <div class="InformationTable">
-    </div>
+
     <script>
 
     </script>
