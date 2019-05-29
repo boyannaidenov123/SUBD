@@ -3,6 +3,21 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mysql = require('mysql');
+
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'dani',
+  password : 'root',
+});
+ 
+connection.connect((err)=>{
+  if(err){ 
+    throw err
+  } else{
+    console.log('troikata is comming soon');
+  }
+});
 
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
