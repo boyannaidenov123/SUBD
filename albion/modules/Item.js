@@ -14,7 +14,6 @@ exports.Get = ()=>{
         res.json({'get':'true'});
     }
 }
-//&#x270e;
 
 //updates the price of items from database according to data from the body(single field "silver":<number>)
 exports.Update = ()=>{

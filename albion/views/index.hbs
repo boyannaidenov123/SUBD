@@ -13,39 +13,94 @@
             background-size: cover;
         }
         .table{
-            background-color: white;
-            margin-left: 30%;
-            width: 35%;
+            background-color: black;
+            color: white;
+            margin-left: 25%;
             margin-top: 10%;
             overflow: hidden;
+            width: 40%;
+            border: 5px solid #1C6EA4;
+            border-radius: 40px;
         }
         .ulMain{
-            list-style-type: none;
+            font-style: oblique;
         }
-        li{
+        .liMain{
             float: left;
+            width:14%;
             display: block;
-            padding-left: 7%;
-            border:2px solid red;
+            text-align: center;
+            text-decoration: none;
         }
+        .liWrite{
+            float: left;
+            width:7%;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+        .tableHeadRow{
+            overflow: hidden;
+            border-bottom: 5px solid #1C6EA4;
+        }
+        .ulAll{
+            border-bottom: 5px solid #1C6EA4;
+            overflow: hidden;
+        }
+        .liAll{
+            float: left;
+            width:14%;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+        }
+
     </style>
     
     <div class="table">
         <div class="tableHeadRow">
             <ul class="ulMain">
-                <li>Name</li>
-                <li>Type</li>
-                <li>Tier</li>
-                <li>City</li>
-                <li>Price</li>
-                <li>Last-Modified</li>
+                <li class="liMain">Name</li>
+                <li class="liMain">Type</li>
+                <li class="liMain">Tier</li>
+                <li class="liMain">City</li>
+                <li class="liMain">Price <span style="font-size:15px">&#x2193;</span></li>
+                <li class="liMain">Date</li>
             </ul>
         </div>
+
         <div class="InformationTable"></div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script>
-
+        $(document).ready(function(){
+            $(".InformationTable").html(function(){
+                return '<div class="tableRow">'+
+                    '<ul class="ulAll">'+
+                        '<li class="liAll">'+'name'+'</li>'+
+                        '<li class="liAll">'+'type'+'</li>'+
+                        '<li class="liAll">'+'tier'+'</li>'+
+                        '<li class="liAll">'+'city'+'</li>'+
+                        '<li class="liAll">'+'price '+'<span style="font-size:15px">&#x2193;</span></li>'+
+                        '<li class="liAll">'+'date'+'</li>'+
+                        '<li class="liWrite"><span style="font-size:27px">&#x270e;</span></li>'+
+                        '<li class="liWrite"> <span style="font-size:20px"> &#128465;</span></li>'+
+                    '</ul></div>'+
+                    '<div class="tableRow">'+
+                    '<ul class="ulAll">'+
+                        '<li class="liAll">'+'name'+'</li>'+
+                        '<li class="liAll">'+'type'+'</li>'+
+                        '<li class="liAll">'+'tier'+'</li>'+
+                        '<li class="liAll">'+'city'+'</li>'+
+                        '<li class="liAll">'+'price '+'<span style="font-size:15px">&#x2193;</span></li>'+
+                        '<li class="liAll">'+'date'+'</li>'+
+                        '<li class="liWrite"><span style="font-size:27px">&#x270e;</span></li>'+
+                        '<li class="liWrite"> <span style="font-size:20px"> &#128465;</span></li>'+
+                    '</ul></div>'
+            });
+        });
     </script>
 </body>
 </html>
