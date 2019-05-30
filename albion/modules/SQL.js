@@ -7,7 +7,7 @@ exports.create = (body)=>{
     return ``;
 }
 
-exports.update = (price)=>{
+exports.update = (id,price)=>{
     return ``;
 }
 
