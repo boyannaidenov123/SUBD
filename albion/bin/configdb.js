@@ -14,7 +14,7 @@ insert into city(cname) values ("Lymhurst");`;
 
 var connection = mysql.createConnection({
 	host: 'localhost',
-	user: 'dani',
+	user: 'root',
 	password: 'root',
 });
 
@@ -37,5 +37,3 @@ connection.connect((err) => {
 		connection.end();
 	}
 });
-
-

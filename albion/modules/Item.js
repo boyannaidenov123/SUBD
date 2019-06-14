@@ -2,7 +2,7 @@ var mysql = require('mysql');
 
 var connection = mysql.createConnection({
     host: 'localhost',
-    user: 'dani',
+    user: 'root',
     password: 'root',
 });
 
@@ -20,23 +20,33 @@ exports.Create = () => {
     return (req, res, next) => {
         ({ type, tier, name, city, price } = req.body);
         var id;
-        connection.query(`Select c.id from city c where c.cname = '${city}'`, (err, results, fields) => {
+
+        var sql1 = `Select c.id from city c where c.cname = ` + connection.escape(city);
+
+
+        connection.query(sql1, (err, results, fields) => {
             if (err) {
                 console.log(err);
             } else {
                 city = results[0].id;
-                connection.query(`insert into item(classification, tier, name, price) values('${type}', ${tier}, '${name}', ${price});`, function (err, results, fields) {
+                var sql2 = `insert into item(classification, tier, name, price) values(` + connection.escape(type)+ `,`  + connection.escape(tier)+ `,`  + connection.escape(name)+ `,`  + connection.escape(price) + `);`;
+
+
+                connection.query(sql2, function (err, results, fields) {
                     if (err) {
                         console.log(err);
                     }
                     else {
                         id = results.insertId;
-                        connection.query(`insert into market(itemId, cityId) values(${id}, '${city}');`, function (err, results, fields) {
+
+                        var sql3 = `insert into market(itemId, cityId) values(` +  connection.escape(id) + `,` + connection.escape(city) + `);`;
+
+                        connection.query(sql3, function (err, results, fields) {
                             if (err) {
                                 console.log(err);
                             }
                             else{
-                                res.status(200).json({id}).end();
+                                res.status(201).json({id}).end();
                             }
                         });
                     }
@@ -52,11 +62,14 @@ exports.Create = () => {
 exports.Get = () => {
     return (req, res, next) => {
         sortingField = req.body.sortingField;
-        connection.query(`select i.classification, i.tier, i.name, i.price, c.cname
+
+        var sql = `select i.classification, i.tier, i.name, i.price, c.cname
             from market m
             left join item i On m.itemId = i.Id
             left join city c on m.cityId = c.id
-            order by ${sortingField};`, function (err, results, fields) {
+            order by ` + connection.escape(sortingField); + `;`;
+
+        connection.query(sql, function (err, results, fields) {
             if (err) {
                 console.log(err);
                 res.status(500);
@@ -70,15 +83,21 @@ exports.Get = () => {
 exports.Update = () => {
     return (req, res, next) => {
         ({ id, price } = req.body);
-        connection.query(`update item set item.price=${price} 
-        where item.id=${id};`, function (err) {
+
+        var sql = `update item set item.price=` + connection.escape(price) +
+        `where item.id=` + connection.escape(id); + `;`;
+
+        connection.query(sql, function (err) {
             if (err) {
                 console.log(err);
                 res.status(500);
             }
-            else res.status(200);
+            else {
+              res.status(200);
+              //res.json({okay: "yes"});
+              res.end();
+            }
         });
-
     }
 }
 
@@ -86,8 +105,11 @@ exports.Update = () => {
 exports.Delete = () => {
     return (req, res, next) => {
         id = req.body.id;
-        connection.query(`delete from market 
-        where itemId = ${id};`, function (err,results,fields) {
+
+        var sql = `delete from market
+        where itemId =  ` + connection.escape(id); + `;`;
+
+        connection.query(sql, function (err,results,fields) {
             if (err) {
                 console.log(err);
                 res.status(500);
